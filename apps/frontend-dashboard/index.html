@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>omni-rag-saas | No-Code AI Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-900 text-gray-100 font-sans min-h-screen flex flex-col">
+
+  <!-- Header Section -->
+  <header class="border-b border-gray-800 bg-gray-950 px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <span class="text-2xl">🤖</span>
+      <h1 class="text-xl font-bold bg-gradient-to-r from-blue-400 to-teal-400 bg-clip-text text-transparent">omni-rag-saas</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <span class="text-xs bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full border border-emerald-500/20">System Online</span>
+      <button class="bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium px-4 py-2 rounded-lg transition">Logout</button>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <main class="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6 p-6 max-w-7xl mx-auto w-full">
+
+    <!-- Left Panel: Data Ingestion -->
+    <section class="bg-gray-950 p-5 rounded-xl border border-gray-800 flex flex-col justify-between">
+      <div>
+        <h2 class="text-lg font-semibold mb-4 text-blue-400">1. Data Knowledge Base</h2>
+        <p class="text-xs text-gray-400 mb-4">Upload your PDFs or Docs to train your multi-tenant AI chatbot instantlly.</p>
+        
+        <div class="border-2 border-dashed border-gray-700 rounded-lg p-6 text-center hover:border-blue-500 transition cursor-pointer mb-4">
+          <p class="text-sm text-gray-300">Drag & Drop files here or <span class="text-blue-400 underline">Browse</span></p>
+          <span class="text-xs text-gray-500 mt-2 block">Supports PDF, DOCX, TXT (Max 25MB)</span>
+        </div>
+      </div>
+      
+      <button class="w-full bg-teal-600 hover:bg-teal-500 text-white font-medium py-2 rounded-lg transition text-sm">Train RAG Engine</button>
+    </section>
+
+    <!-- Center & Right Panel: Interactive Playground -->
+    <section class="md:col-span-2 bg-gray-950 p-5 rounded-xl border border-gray-800 flex flex-col">
+      <h2 class="text-lg font-semibold mb-4 text-teal-400">2. Chatbot Playground</h2>
+      
+      <!-- Chat Screen -->
+      <div id="chatBox" class="flex-1 bg-gray-900 rounded-lg p-4 overflow-y-auto mb-4 border border-gray-800 space-y-3 min-h-[300px]">
+        <div class="bg-gray-800 p-3 rounded-lg text-xs max-w-[80%]">
+          <p class="text-blue-300 font-semibold mb-1">AI Assistant</p>
+          Hello! I am your custom RAG chatbot. Ask me anything based on your uploaded documents.
+        </div>
+      </div>
+
+      <!-- Chat Input Form -->
+      <form id="chatForm" class="flex space-x-2">
+        <input type="text" id="userInput" placeholder="Ask your RAG agent..." class="flex-1 bg-gray-900 border border-gray-700 rounded-lg px-4 py-2 text-sm text-gray-200 focus:outline-none focus:border-blue-500">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2 rounded-lg text-sm font-medium transition">Send</button>
+      </form>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
