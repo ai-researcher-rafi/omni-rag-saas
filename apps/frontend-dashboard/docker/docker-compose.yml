@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # 1. MongoDB Database
+  mongo-db:
+    image: mongo:latest
+    container_name: omni_mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: omni_rag_saas
+    volumes:
+      - mongo_data:/data/db
+
+  # 2. Node.js Backend Core Service
+  backend-core:
+    build:
+      context: ../../apps/backend-core
+      dockerfile: Dockerfile
+    container_name: omni_backend_core
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      PORT: 5000
+      MONGO_URI: mongodb://mongo-db:27017/omni_rag_saas
+      JWT_SECRET: super_secret_omni_rag_key_2026
+    depends_on:
+      - mongo-db
+
+  # 3. Python RAG Engine Service
+  rag-engine:
+    build:
+      context: ../../apps/rag-engine
+      dockerfile: Dockerfile
+    container_name: omni_rag_engine
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      PORT: 8000
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+    depends_on:
+      - mongo-db
+
+volumes:
+  mongo_data:
